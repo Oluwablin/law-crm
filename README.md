@@ -47,4 +47,11 @@ php artisan key:generate
 php artisan migrate
 ```
 
+### Seed the database
+ 
+```bash 
+localhost:8000/seed-db 
+``` 
+Paste that into your browser and click enter. A message 'Database seeded successfully' will pop up. You can now login with these details (sent to your mail).
+
 

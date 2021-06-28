@@ -23,8 +23,8 @@ class CreateClientsTable extends Migration
             $table->date('date_of_birth');
             $table->string('case_details');
             $table->string('profile_image')->nullable();
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

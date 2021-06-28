@@ -9,6 +9,21 @@
 @endsection
 
 @section('content')
+<div class="col-sm-12">
+@if(session()->get('success'))
+    <div class="alert alert-success">
+        {{ session()->get('success') }}
+    </div>
+    @else($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+      </div><br />
+@endif
+</div>
     <div class="panel-body">
         <h5>Add New Client</h5>
             @include('errors.list')
@@ -44,7 +59,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="controls">
-                            {{ Form::label('date_profiled', 'First Name') }}
+                            {{ Form::label('date_profiled', 'Profiled Date') }}
                                     {{ Form::date('date_profiled', null, ['class' => 'form-control', 'placeholder' => 'Enter Profile Date']) }}
                             </div>
                         </div>

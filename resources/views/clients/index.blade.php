@@ -4,20 +4,30 @@
   Clients
 @endsection
 
-@section('buttons')
-  <a href="{{ route('client_create') }}" class="btn btn-sm btn-info btn-rounded">Add New Client</a>
+@section('button')
+<div class="row">
+ <div class="col-sm-8 offset-sm-2">
+ <a style="margin: 19px;" href="{{ route('client_create') }}" class="btn btn-primary">Add New Client</a>
+  </div>
+  </div>
 @endsection
 
 @section('content')
-@if(session()->has('success'))
+<div class="col-sm-12">
+@if(session()->get('success'))
     <div class="alert alert-success">
-        {{ session()->get('message') }}
+        {{ session()->get('success') }}
     </div>
-    @else(session()->has('error'))
+    @else($errors->any())
     <div class="alert alert-danger">
-        {{ session()->get('error') }}
-    </div>
+        <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+      </div><br />
 @endif
+</div>
 <div class="container-fluid container-fixed-lg bg-white">
     <!-- START PANEL -->
     <div class="panel panel-transparent">
@@ -25,18 +35,35 @@
             <div class="panel-title">
                 All Clients
             </div>
-            <div class="pull-right">
-                <div class="col-xs-12">
-                    <input class="search-table form-control pull-right" placeholder="Search" type="text">
-                    </input>
-                </div>
+            <div class="mx-auto pull-right">
+            <div class="">
+                <form action="{{ route('client_index') }}" method="GET" role="search">
+
+                    <div class="input-group">
+                        <span class="input-group-btn mr-5 mt-1">
+                            <button class="btn btn-info" type="submit" title="Search clients">
+                                <span class="fas fa-search"></span>
+                            </button>
+                        </span>
+                        <input type="text" class="form-control mr-2" name="search" placeholder="Search Clients by Lastname" id="search">
+                        <a href="{{ route('client_index') }}" class=" mt-1">
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="button" title="Refresh page">
+                                    <span class="fas fa-sync-alt"></span>
+                                </button>
+                            </span>
+                        </a>
+                    </div>
+                </form>
             </div>
+        </div>
+        </div>
             <div class="clearfix">
             </div>
         </div>
         <div class="panel-body">
             <table class="table tableWithSearch">
-                <thead>
+                <tr>
                     <th>
                         First Name
                     </th>
@@ -62,9 +89,10 @@
                         Profile Image
                     </th>
                     <th colspan="2">
+                        Actions
                     </th>
-                </thead>
-                <tbody>
+                </tr>
+
                 @if($clients->count() > 0)
                         @foreach ($clients as $client)
                         <tr>
@@ -111,7 +139,7 @@
                         @endforeach
                         @else{{ 'No Clients Available' }}
                     @endif
-                </tbody>
+
             </table>
         </div>
     </div>

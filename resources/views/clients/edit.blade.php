@@ -9,6 +9,21 @@
 @endsection
 
 @section('content')
+<div class="col-sm-12">
+@if(session()->get('success'))
+    <div class="alert alert-success">
+        {{ session()->get('success') }}
+    </div>
+    @else($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+      </div><br />
+@endif
+</div>
 <div class="panel panel-transparent">
 	<div class="panel-heading">
 		<div class="panel-title">

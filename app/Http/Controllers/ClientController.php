@@ -18,11 +18,21 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $clients = Client::simplePaginate(10);
+        $clients = Client::where([
+            ['last_name', '!=', null],
+            [function ($query) use ($request) {
+                if (($search = $request->search)) {
+                    $query->orWhere('last_name', 'LIKE', '%' . $search . '%')->get();
+                }
+            }]
+        ])
+        ->orderBy('id', 'DESC')
+        ->simplePaginate(10);
 
-        return view('clients.index', compact('clients'));
+        return view('clients.index', compact('clients'))
+        ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

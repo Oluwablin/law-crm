@@ -31,7 +31,7 @@ Client Profile: <span class="text-info">{{ $client->first_name }}</span>
 	</div>
 
     <div class="f13 m-b-15"><b>Profile Image
-      <img width="22" height="22" alt="" src="{{ asset('images/avatars/'.$client->profile_image) }}" style="border-radius:50%" class="m-l-5">
+      <img width="22" height="22" alt="" src="{{ asset('avatars/'.$client->profile_image) }}" style="border-radius:50%" class="m-l-5">
       <span class="">{{ $client->profile_image }}</span>
       </b>
     </div>

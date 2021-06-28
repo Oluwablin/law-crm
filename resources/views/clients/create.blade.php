@@ -41,7 +41,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="controls">
-                            {{ Form::label('last_name', 'First Name') }}
+                            {{ Form::label('last_name', 'Last Name') }}
                                     {{ Form::text('last_name', null, ['class' => 'form-control', 'placeholder' => 'Enter Last Name']) }}
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="controls">
-                            {{ Form::label('case_details', 'Enter Case Details') }}
+                            {{ Form::label('case_details', 'Case Details') }}
                                     {{ Form::text('case_details', null, ['class' => 'form-control', 'placeholder' => 'Enter Case Details']) }}
                             </div>
                         </div>
